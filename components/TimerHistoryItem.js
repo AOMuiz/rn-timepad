@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   time: {
     flexDirection: "row",
     margin: 5,
-    width: "75%",
+    width: "67%",
     justifyContent: "space-between",
   },
   name: { fontWeight: "600" },

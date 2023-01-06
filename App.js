@@ -5,8 +5,9 @@ import TimeTrackerScreen from "./TimeTrackerScreen";
 import HomeScreen from "./HomeScreen";
 import SettingsScreen from "./SettingsScreen";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,10 @@ const App = () => {
       ...prevTimerSessions,
       { name, elapsedTime },
     ]);
+    AsyncStorage.setItem(
+      "timerHistory",
+      JSON.stringify([...timerSessions, { name, elapsedTime }])
+    );
   };
 
   return (
@@ -26,7 +31,7 @@ const App = () => {
         <Tab.Screen
           name="Home"
           component={HomeScreen}
-          initialParams={{ timerSessions }}
+          initialParams={{ timerSessions, setTimerSessions }}
           options={{
             tabBarIcon: (tabInfo) => {
               return (
@@ -58,6 +63,7 @@ const App = () => {
         <Tab.Screen
           name="Settings"
           component={SettingsScreen}
+          initialParams={{ timerSessions }}
           options={{
             tabBarIcon: (tabInfo) => {
               return (
