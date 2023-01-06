@@ -6,6 +6,7 @@ import HomeScreen from "./HomeScreen";
 import SettingsScreen from "./SettingsScreen";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,13 +27,49 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           initialParams={{ timerSessions }}
+          options={{
+            tabBarIcon: (tabInfo) => {
+              return (
+                <Ionicons
+                  name="md-home-outline"
+                  size={24}
+                  color={tabInfo.focused ? "#000000" : "#8e8e93"}
+                />
+              );
+            },
+          }}
         />
         <Tab.Screen
           name="Time Tracker"
           component={TimeTrackerScreen}
           initialParams={{ onStop: handleAddTimerSession }}
+          options={{
+            tabBarIcon: (tabInfo) => {
+              return (
+                <Ionicons
+                  name="md-timer-outline"
+                  size={24}
+                  color={tabInfo.focused ? "#000000" : "#8e8e93"}
+                />
+              );
+            },
+          }}
         />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            tabBarIcon: (tabInfo) => {
+              return (
+                <Ionicons
+                  name="md-pie-chart-outline"
+                  size={24}
+                  color={tabInfo.focused ? "#000000" : "#8e8e93"}
+                />
+              );
+            },
+          }}
+        />
       </Tab.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
