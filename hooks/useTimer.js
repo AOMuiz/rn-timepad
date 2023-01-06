@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { GlobalContext } from "../context/Provider";
 
 export default function useTimer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const { elapsedTime, setElapsedTime } = useContext(GlobalContext);
   const countRef = useRef();
 
   const handleTime = () => {

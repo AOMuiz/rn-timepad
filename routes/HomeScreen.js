@@ -3,14 +3,17 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import TimerHistoryItem from "../components/TimerHistoryItem";
 import { GlobalContext } from "../context/Provider";
 import { colors } from "../utils/colors";
+import { millisecondsToHuman } from "../utils/TimerUtils";
 
 const HomeScreen = ({}) => {
-  const { timerSessions } = useContext(GlobalContext);
+  const { timerSessions, elapsedTime } = useContext(GlobalContext);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Task</Text>
       <View style={styles.currentTimerContainer}>
-        <Text style={styles.currentTime}>00:32:10</Text>
+        <Text style={styles.currentTime}>
+          {millisecondsToHuman(elapsedTime)}
+        </Text>
         <Text style={styles.currentTitle}>Rasion Project</Text>
       </View>
       <View style={styles.container}>

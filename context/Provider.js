@@ -7,6 +7,7 @@ export const GlobalContext = createContext({});
 
 const GlobalProvider = ({ children }) => {
   const [timerSessions, setTimerSessions] = useState([]);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   const handleAddTimerSession = async (name, elapsedTime) => {
     setTimerSessions((prevTimerSessions) => [
@@ -33,7 +34,13 @@ const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ timerSessions, onStop: handleAddTimerSession, loadTimerHistory }}
+      value={{
+        elapsedTime,
+        setElapsedTime,
+        timerSessions,
+        onStop: handleAddTimerSession,
+        loadTimerHistory,
+      }}
     >
       {children}
     </GlobalContext.Provider>
