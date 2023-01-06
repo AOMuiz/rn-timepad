@@ -9,14 +9,14 @@ const GlobalProvider = ({ children }) => {
   const [timerSessions, setTimerSessions] = useState([]);
   const [elapsedTime, setElapsedTime] = useState(0);
 
-  const handleAddTimerSession = async (name, elapsedTime) => {
+  const handleAddTimerSession = async (name, elapsedTime, id) => {
     setTimerSessions((prevTimerSessions) => [
       ...prevTimerSessions,
-      { name, elapsedTime },
+      { name, elapsedTime, id },
     ]);
     await AsyncStorage.setItem(
       "timerHistory",
-      JSON.stringify([...timerSessions, { name, elapsedTime }])
+      JSON.stringify([...timerSessions, { name, elapsedTime, id }])
     );
   };
 
@@ -28,6 +28,9 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
+  const clear = async () => {
+    await AsyncStorage.clear();
+  };
   useEffect(() => {
     loadTimerHistory();
   }, []);

@@ -26,7 +26,7 @@ const HomeScreen = ({}) => {
               elapsedTime={item?.elapsedTime}
             />
           )}
-          keyExtractor={(item) => item?.name}
+          keyExtractor={(item) => item?.id}
         />
       </View>
     </View>

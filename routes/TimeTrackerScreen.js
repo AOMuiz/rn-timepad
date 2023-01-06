@@ -12,6 +12,8 @@ import { millisecondsToHuman } from "../utils/TimerUtils";
 import { colors } from "../utils/colors";
 import useTimer from "../hooks/useTimer";
 import { GlobalContext } from "../context/Provider";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 
 const TimeTrackerScreen = ({ navigation }) => {
   const { onStop } = useContext(GlobalContext);
@@ -34,10 +36,11 @@ const TimeTrackerScreen = ({ navigation }) => {
   };
 
   const handleStop = () => {
+    const id = uuidv4();
     setIsRunning(false);
     setIsPaused(false);
     setElapsedTime(0);
-    onStop(sessionName, elapsedTime);
+    onStop(sessionName, elapsedTime, id);
     setSessionName("");
     navigation.navigate("Home");
   };
