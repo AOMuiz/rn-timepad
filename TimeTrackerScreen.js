@@ -6,14 +6,16 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppButton from "./components/Button";
+import { millisecondsToHuman } from "./utils/TimerUtils";
 
 const TimeTrackerScreen = ({ route, navigation }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = React.useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [sessionName, setSessionName] = useState("");
+  const countRef = useRef();
   const { onStop } = route.params;
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const TimeTrackerScreen = ({ route, navigation }) => {
         setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
       }, 1000);
     }
+
     return () => clearInterval(interval);
   }, [isRunning, isPaused]);
 
@@ -51,7 +54,7 @@ const TimeTrackerScreen = ({ route, navigation }) => {
     <View style={{ backgroundColor: "white", flex: 1 }}>
       {isRunning ? (
         <>
-          <Text>Elapsed Time: {elapsedTime}</Text>
+          <Text>Elapsed Time: {millisecondsToHuman(elapsedTime)}</Text>
           <View style={styles.actionsContainer}>
             {isPaused ? (
               <AppButton
