@@ -54,22 +54,33 @@ const TimeTrackerScreen = ({ route, navigation }) => {
     <View style={{ backgroundColor: "white", flex: 1 }}>
       {isRunning ? (
         <>
-          <Text>Elapsed Time: {millisecondsToHuman(elapsedTime)}</Text>
-          <View style={styles.actionsContainer}>
-            {isPaused ? (
-              <AppButton
-                onPress={handlePause}
-                label="Resume"
-                iconName="md-play"
-              />
-            ) : (
-              <AppButton
-                label="Pause"
-                onPress={handlePause}
-                iconName="md-pause"
-              />
-            )}
-            <AppButton label="Stop" onPress={handleStop} iconName="md-stop" />
+          <View style={styles.counterCountainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.sessionName}>{sessionName}</Text>
+              <View style={styles.tagsContainer}>
+                <Text style={styles.tag}>Work</Text>
+                <Text style={styles.tag}>Rasion Project</Text>
+              </View>
+            </View>
+            <Text style={styles.elapsedTime}>
+              {millisecondsToHuman(elapsedTime)}
+            </Text>
+            <View style={styles.actionsContainer}>
+              {isPaused ? (
+                <AppButton
+                  onPress={handlePause}
+                  label="Resume"
+                  iconName="md-play"
+                />
+              ) : (
+                <AppButton
+                  label="Pause"
+                  onPress={handlePause}
+                  iconName="md-pause"
+                />
+              )}
+              <AppButton label="Stop" onPress={handleStop} iconName="md-stop" />
+            </View>
           </View>
         </>
       ) : (
@@ -118,11 +129,39 @@ const TimeTrackerScreen = ({ route, navigation }) => {
 export default TimeTrackerScreen;
 
 const styles = StyleSheet.create({
+  counterCountainer: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    flex: 1,
+    marginVertical: 15,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignSelf: "stretch",
+    marginHorizontal: 15,
+  },
+  tagsContainer: { flexDirection: "row", margin: 5 },
+  tag: {
+    marginHorizontal: 4,
+    padding: 5,
+    backgroundColor: "#F5EEFC",
+    color: "#9B51E0",
+    borderRadius: 5,
+  },
+  sessionName: {
+    color: "#070417",
+    fontSize: 24,
+    textTransform: "capitalize",
+    fontWeight: "500",
+  },
+  elapsedTime: { fontSize: 48, fontWeight: "500", textAlign: "center" },
   actionsContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "baseline",
   },
+
   initialActions: {
     justifyContent: "center",
     alignItems: "center",

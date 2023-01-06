@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { millisecondsToHuman } from "../utils/TimerUtils";
 
 const TimerHistoryItem = ({ name, elapsedTime }) => (
   <View style={styles.container}>
@@ -10,7 +11,9 @@ const TimerHistoryItem = ({ name, elapsedTime }) => (
     <View style={styles.details}>
       <View style={styles.time}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.elapsedTime}>00:00:0{elapsedTime}</Text>
+        <Text style={styles.elapsedTime}>
+          {millisecondsToHuman(elapsedTime)}
+        </Text>
       </View>
       <View style={styles.tagsContainer}>
         <Text style={styles.tag}>Work</Text>
