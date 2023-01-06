@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import AppButton from "./components/Button";
 import { millisecondsToHuman } from "./utils/TimerUtils";
+import { colors } from "./utils/colors";
 
 const TimeTrackerScreen = ({ route, navigation }) => {
   const [isRunning, setIsRunning] = useState(false);
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     padding: 5,
     backgroundColor: "#F5EEFC",
-    color: "#9B51E0",
+    color: colors.purple,
     borderRadius: 5,
   },
   sessionName: {
@@ -172,11 +173,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#E9E9FF",
     fontSize: 25,
 
-    color: "#070417",
+    color: colors.black,
     padding: 15,
     display: "flex",
     alignItems: "center",
     borderRadius: 8,
   },
-  quit: { color: "#070417", marginVertical: 20, fontSize: 18 },
+  quit: { color: colors.black, marginVertical: 20, fontSize: 18 },
 });

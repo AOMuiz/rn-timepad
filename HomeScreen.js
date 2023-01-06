@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import TimerHistoryItem from "./components/TimerHistoryItem";
+import { colors } from "./utils/colors";
 
 const HomeScreen = ({ route }) => {
   const { timerSessions } = route.params;
@@ -33,7 +34,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FAFAFF",
+    backgroundColor: colors.lightGray,
     flex: 1,
   },
   title: {
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   currentTimerContainer: {
-    backgroundColor: "#070417",
+    backgroundColor: colors.black,
     borderRadius: 10,
     margin: 7,
     paddingVertical: 15,
@@ -54,5 +55,5 @@ const styles = StyleSheet.create({
     color: "white",
     marginVertical: 10,
   },
-  currentTitle: { fontSize: 18, color: "white" },
+  currentTitle: { fontSize: 18, color: colors.white },
 });
