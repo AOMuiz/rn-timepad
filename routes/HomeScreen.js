@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import TimerHistoryItem from "../components/TimerHistoryItem";
+import { GlobalContext } from "../context/Provider";
 import { colors } from "../utils/colors";
 
-const HomeScreen = ({ route }) => {
-  const { timerSessions } = route.params;
-
-  console.log({ timerSessions });
+const HomeScreen = ({}) => {
+  const { timerSessions } = useContext(GlobalContext);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Task</Text>

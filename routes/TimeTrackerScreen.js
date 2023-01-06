@@ -6,23 +6,28 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useRef } from "react";
-import AppButton from "./components/Button";
-import { millisecondsToHuman } from "./utils/TimerUtils";
-import { colors } from "./utils/colors";
+import React, { useContext, useState } from "react";
+import AppButton from "../components/Button";
+import { millisecondsToHuman } from "../utils/TimerUtils";
+import { colors } from "../utils/colors";
 import useTimer from "../hooks/useTimer";
+import { GlobalContext } from "../context/Provider";
 
-const TimeTrackerScreen = ({ route, navigation }) => {
+const TimeTrackerScreen = ({ navigation }) => {
+  const { onStop } = useContext(GlobalContext);
+
   const {
     setIsPaused,
     setIsRunning,
     isRunning,
+    isPaused,
     elapsedTime,
     handlePause,
+    handleStart,
     setElapsedTime,
   } = useTimer();
+
   const [sessionName, setSessionName] = useState("");
-  const { onStop } = route.params;
 
   const handleQuit = () => {
     navigation.navigate("Home");

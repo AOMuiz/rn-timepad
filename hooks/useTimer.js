@@ -30,10 +30,11 @@ export default function useTimer() {
 
   return {
     isRunning,
-
+    setIsRunning,
     isPaused,
     setIsPaused,
     elapsedTime,
+    setElapsedTime,
     handlePause,
     handleStart,
     handleTime,
