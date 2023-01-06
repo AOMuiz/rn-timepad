@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import TimerHistoryItem from "./components/TimerHistoryItem";
-import { colors } from "./utils/colors";
+import TimerHistoryItem from "../components/TimerHistoryItem";
+import { colors } from "../utils/colors";
 
 const HomeScreen = ({ route }) => {
   const { timerSessions } = route.params;
 
-  console.log(timerSessions);
+  console.log({ timerSessions });
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Task</Text>

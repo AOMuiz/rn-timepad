@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TimeTrackerScreen from "./TimeTrackerScreen";
-import HomeScreen from "./HomeScreen";
-import SettingsScreen from "./SettingsScreen";
+import TimeTrackerScreen from "../routes/TimeTrackerScreen";
+import HomeScreen from "../routes/HomeScreen";
+import SettingsScreen from "../routes/SettingsScreen";
 import { StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";

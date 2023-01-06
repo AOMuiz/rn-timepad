@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { BarChart, Grid } from "react-native-chart-kit";
@@ -21,33 +21,53 @@ const SettingsScreen = ({ route }) => {
   const data = timerSessions.map((timerSession) => timerSession.elapsedTime);
   const labels = timerSessions.map((timerSession) => timerSession.name);
 
+  console.log({ data, labels, timerSessions });
+
   return (
     <View>
       <View>
         <Text>Total elapsed time for each session:</Text>
         <BarChart
           data={{
-            labels,
+            // labels,
+            labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                data,
+                // data: [...data],
+                data: [
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                ],
               },
             ],
           }}
-          width={340}
+          width={Dimensions.get("window").width}
           height={220}
           yAxisLabel="Elapsed Time (s)"
           chartConfig={{
-            backgroundColor: "#1cc910",
-            backgroundGradientFrom: "#eff3ff",
-            backgroundGradientTo: "#efefef",
-            decimalPlaces: 2,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            backgroundColor: "#e26a00",
+            backgroundGradientFrom: "#fb8c00",
+            backgroundGradientTo: "#ffa726",
+            decimalPlaces: 2, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16,
             },
+            propsForDots: {
+              r: "6",
+              strokeWidth: "2",
+              stroke: "#ffa726",
+            },
           }}
           bezier
+          style={{
+            marginVertical: 8,
+          }}
         />
       </View>
     </View>
