@@ -25,6 +25,18 @@ const App = () => {
     );
   };
 
+  const loadTimerHistory = async () => {
+    const timerHistoryString = await AsyncStorage.getItem("timerHistory");
+    if (timerHistoryString) {
+      setTimerSessions(JSON.parse(timerHistoryString));
+      console.log({ timerHistoryString });
+    }
+  };
+
+  useEffect(() => {
+    loadTimerHistory();
+  }, []);
+
   return (
     <NavigationContainer>
       <Tab.Navigator>

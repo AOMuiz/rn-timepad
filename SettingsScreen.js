@@ -1,11 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { BarChart, Grid } from "react-native-chart-kit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SettingsScreen = ({ route }) => {
-  // const route = useRoute();
   const { timerSessions } = route.params;
+
+  const loadTimerHistory = async () => {
+    const timerHistoryString = await AsyncStorage.getItem("timerHistory");
+    if (timerHistoryString) {
+      console.log({ timerHistoryString });
+    }
+  };
+
+  useEffect(() => {
+    loadTimerHistory();
+  }, [timerSessions]);
 
   const data = timerSessions.map((timerSession) => timerSession.elapsedTime);
   const labels = timerSessions.map((timerSession) => timerSession.name);

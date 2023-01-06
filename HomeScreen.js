@@ -1,22 +1,8 @@
-import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import TimerHistoryItem from "./components/TimerHistoryItem";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = ({ route }) => {
-  const { timerSessions, setTimerSessions } = route.params;
-
-  const loadTimerHistory = async () => {
-    const timerHistoryString = await AsyncStorage.getItem("timerHistory");
-    if (timerHistoryString) {
-      setTimerSessions(JSON.parse(timerHistoryString));
-      console.log({ timerHistoryString });
-    }
-  };
-
-  useEffect(() => {
-    loadTimerHistory();
-  }, []);
+  const { timerSessions } = route.params;
 
   console.log(timerSessions);
   return (
