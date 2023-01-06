@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
 import React, { useContext } from "react";
 import { BarChart, LineChart } from "react-native-chart-kit";
 import { GlobalContext } from "../context/Provider";
@@ -9,10 +9,8 @@ const SettingsScreen = ({}) => {
   const { timerSessions } = useContext(GlobalContext);
   const screenWidth = Dimensions.get("window").width;
 
-  const time = timerSessions.map((timerSession) => timerSession.elapsedTime);
-  const labels = timerSessions.map((timerSession) => timerSession.name);
-
-  console.log(timerSessions);
+  const time = timerSessions?.map((timerSession) => timerSession.elapsedTime);
+  const labels = timerSessions?.map((timerSession) => timerSession.name);
 
   const data = {
     labels,
@@ -44,7 +42,7 @@ const SettingsScreen = ({}) => {
   };
 
   return (
-    <View style={{ marginVertical: 10, flex: 1 }}>
+    <ScrollView style={{ marginVertical: 10, flex: 1 }}>
       <View>
         <View
           style={{
@@ -56,7 +54,7 @@ const SettingsScreen = ({}) => {
           <Card
             iconName="md-checkmark"
             title={`Task${"\n"}Completed`}
-            subTitle={timerSessions.length}
+            subTitle={timerSessions?.length}
             iconBgColor={colors.green}
           />
           <Card
@@ -111,7 +109,7 @@ const SettingsScreen = ({}) => {
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

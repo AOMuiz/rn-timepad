@@ -16,7 +16,7 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 
 const TimeTrackerScreen = ({ navigation }) => {
-  const { onStop } = useContext(GlobalContext);
+  const { onStop, sessionName, setSessionName } = useContext(GlobalContext);
 
   const {
     setIsPaused,
@@ -28,8 +28,6 @@ const TimeTrackerScreen = ({ navigation }) => {
     handleStart,
     setElapsedTime,
   } = useTimer();
-
-  const [sessionName, setSessionName] = useState("");
 
   const handleQuit = () => {
     navigation.navigate("Home");

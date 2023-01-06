@@ -6,7 +6,7 @@ import { colors } from "../utils/colors";
 import { millisecondsToHuman } from "../utils/TimerUtils";
 
 const HomeScreen = ({}) => {
-  const { timerSessions, elapsedTime } = useContext(GlobalContext);
+  const { timerSessions, elapsedTime, sessionName } = useContext(GlobalContext);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Task</Text>
@@ -14,7 +14,9 @@ const HomeScreen = ({}) => {
         <Text style={styles.currentTime}>
           {millisecondsToHuman(elapsedTime)}
         </Text>
-        <Text style={styles.currentTitle}>Rasion Project</Text>
+        <Text style={styles.currentTitle}>
+          {sessionName ? sessionName : "Timer Name"}
+        </Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.title}>History</Text>
